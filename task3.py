@@ -1,1 +1,3 @@
-print("task3 works")
+s = input()
+z,x = s.split('.')
+print(f"{x}.{z}")
