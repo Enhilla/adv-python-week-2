@@ -1,18 +1,39 @@
-nums = list(map(int, input()))
+# Услоие: даны строки a и b. Посчитать, сколько подстрок a длины |b| являются циклическим сдвигом b. 
 
-# avg_salary = max(nums)-min(nums)
+# Assignment-2
 
-# print(avg_salary)
+# Идея
 
-max_salary = nums[0]
-min_salary = nums[0]
+# Строка t длины m — циклический сдвиг b тогда и только тогда, когда t встречается как подстрока в b+b.
+# Пример: b="abc", b+b="abcabc", сдвиги: "abc", "bca", "cab" — все внутри.
 
+# Структура
 
-for x in nums:
-    if max_salary < x:
-        max_salary = x
-    if max_salary > x:
-        min_salary = x
+# ввод a, b
 
-print(max_salary - min_salary)
+# m = len(b)
 
+# bb = b + b
+
+# цикл по всем окнам длины m в a
+
+# если a[i:i+m] in bb → счётчик++
+
+# Важная ремарка по твоему коду
+
+# сделать if sub in bb, это верно по смыслу, но по времени может быть медленнее, однако при ограничениях (|a|≤1000, |b|≤100) обычно проходит.
+a = input().strip()
+b = input().strip()
+
+n = len(a)
+m = len(b)
+
+bb = b + b    # в bb содержатся все циклические сдвиги b как подстроки
+count = 0
+
+for i in range(n - m + 1):
+    sub = a[i:i + m]
+    if sub in bb:
+        count += 1
+
+print(count)

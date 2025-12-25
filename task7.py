@@ -1,21 +1,57 @@
-a = float(input("First number: "))
-op = input("Operation (+, -, *, /): ")
-b = float(input("Second number: "))
+# Task 7 — Shopping List Analysis
 
-if op == "+":
-   result = (a + b)
+# # Условие: по списку покупок в одной строке:
 
-elif op == "-":
-    result = (a - b)
+# частоты
 
-elif op == "*":
-    result = (a * b)
+# самый частый
 
-elif op == "/":
-    if b:
-        result = (a / b)
+# купленные ровно 1 раз
+
+# отсортировать по убыванию частоты 
+
+
+
+# Идея
+
+# Словарь freq, затем:
+
+# печать частот
+
+# max(freq, key=freq.get)
+
+# фильтр count==1
+
+# sorted(freq.items(), key=lambda x: -x[1])
+
+# Важно про формат
+
+# В примере после Purchase frequency: идут строки item: count, потом без пустой строки “Most popular item: ...”, потом “Purchased once: ...” (у тебя есть лишние \n, но обычно это не критично; иногда автотесты требуют точный формат).
+items = input().split()
+
+freq = {}
+
+
+for item in items:
+    if item in freq:
+        freq[item] += 1
     else:
-        result = "Error: division by zero"
+        freq[item] = 1
 
+print("Purchase frequency:")
+for item in freq:
+    print(f"{item}: {freq[item]}")
 
-print(f"{a} {op} {b} = {result}")
+most_popular = max(freq, key=freq.get)
+print("\nMost popular item:", most_popular)
+
+print("\nPurchased once:", end=" ")
+for item in freq:
+    if freq[item] == 1:
+        print(item, end=" ")
+
+print("\n\nSorted by frequency:")
+
+sorted_items = sorted(freq.items(), key=lambda x: -x[1])
+for item, count in sorted_items:
+    print(item, count)

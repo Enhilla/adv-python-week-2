@@ -1,21 +1,29 @@
-a = float(input("First number: "))
-op = input("Operation (+, -, *, /): ")
-b = float(input("Second number: "))
+# Task 6 — all_eq(list) (у тебя решения НЕТ)
 
-if op == "+":
-    result = a + b
-elif op == "-":
-    result = a - b
-elif op == "*":
-    result = a * b
-elif op == "/":
-    if b != 0:
-        result = a / b
-    else:
-        print("Error: division by zero")
-        exit()
-else:
-    print("Unknown operation")
-    exit()
+# Условие: написать функцию all_eq(list) которая выравнивает строки до длины самой длинной, дополняя справа _. Порядок не менять. 
 
-print(f"{a} {op} {b} = {result}")
+# Assignment-2
+
+# Правильная структура
+
+# найти max_len = max(len(x) for x in lst)
+
+# вернуть новый список: x + "_"*(max_len-len(x))
+
+# Пример решения
+def all_eq(lst):
+    max_len = 0
+
+    # находим максимальную длину
+    for s in lst:
+        if len(s) > max_len:
+            max_len = len(s)
+
+    # дополняем строки
+    result = []
+    for s in lst:
+        result.append(s + "_" * (max_len - len(s)))
+
+    return result
+print(all_eq(["hi", "hello", "hey"]))
+# ['hi___', 'hello', 'hey__']
